@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   FaStar,
   FaSpinner,
@@ -28,6 +28,25 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [darkMode, setDarkMode] = useState(true);
 
+  const getMovies = useCallback(() => {
+    setLoading(true);
+    setError(null);
+    const genreParam = selectedGenre ? `&with_genres=${selectedGenre}` : "";
+    const url = search
+      ? `${SEARCHAPI}${search}&sort_by=${sortBy}&page=${page}${genreParam}`
+      : `${API_BASE_URL}&sort_by=${sortBy}&page=${page}${genreParam}`;
+    axios
+      .get(url)
+      .then((response) => {
+        setMovies(response.data.results);
+      })
+      .catch((error) => {
+        setError("Failed to fetch movies.");
+        console.error(error);
+      })
+      .finally(() => setLoading(false));
+  }, [search, sortBy, page, selectedGenre]);
+
   useEffect(() => {
     axios
       .get(GENRES_API)
@@ -37,7 +56,8 @@ function App() {
 
   useEffect(() => {
     getMovies();
-  }, [search, sortBy, page, selectedGenre]);
+  }, [getMovies]);
+
 
   const changeTheSearch = (event) => {
     setSearch(event.target.value);
@@ -57,24 +77,7 @@ function App() {
     setDarkMode((prevMode) => !prevMode);
   };
 
-  const getMovies = () => {
-    setLoading(true);
-    setError(null);
-    const genreParam = selectedGenre ? `&with_genres=${selectedGenre}` : "";
-    const url = search
-      ? `${SEARCHAPI}${search}&sort_by=${sortBy}&page=${page}${genreParam}`
-      : `${API_BASE_URL}&sort_by=${sortBy}&page=${page}${genreParam}`;
-    axios
-      .get(url)
-      .then((response) => {
-        setMovies(response.data.results);
-      })
-      .catch((error) => {
-        setError("Failed to fetch movies.");
-        console.error(error);
-      })
-      .finally(() => setLoading(false));
-  };
+  
 
   return (
     <div
