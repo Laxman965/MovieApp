@@ -1,3 +1,46 @@
+# Movie App
+
+Welcome to the Movie App! This application allows users to search, filter, and sort movies using The Movie Database (TMDb) API. It provides a dynamic and interactive interface for discovering movies, viewing detailed information, and exploring genres.
+
+## Features
+
+- **Search Movies**: Find movies based on search queries.
+- **Filter by Genre**: Narrow down results by selecting movie genres.
+- **Sort Options**: Sort movies by popularity, release date, or rating.
+- **Pagination**: Navigate through multiple pages of movie results.
+- **Movie Details**: View detailed information about a selected movie including the poster, release date, overview, and rating.
+- **Dark Mode**: Toggle between light and dark mode for a comfortable viewing experience.
+- **Favorites System**: (Future feature) Mark movies as favorites for quick access.
+
+## Technologies Used
+
+- **React**: JavaScript library for building user interfaces.
+- **Axios**: HTTP client for making API requests.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **The Movie Database (TMDb) API**: API for fetching movie data.
+
+## Installation
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/Laxman965/MovieApp.git
+   
+   
+2. **Navigate to the Project Directory:**
+   ```bash
+   cd MovieApp
+
+3. **Install Dependencies:**
+     ```bash
+    npm install
+     
+4. **Start the Development Server:**
+     ```bash
+     npm start
+
+Open your browser and visit `http://localhost:3000` to see the application in action.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
